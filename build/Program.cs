@@ -31,7 +31,8 @@ public class BuildContext : FrostingContext
     public string NugetVersion { get; }
     public bool PushNuget { get; }
     public string NuGetPushToken { get; }
-    public ProjectPaths ProjectPaths { get; }
+    public SourceGeneratorProjectPaths SourceGeneratorProjectPaths { get; }
+    public AttributesProjectPaths AttributesProjectPaths { get; }
 
     public BuildContext(ICakeContext context)
         : base(context)
@@ -42,7 +43,8 @@ public class BuildContext : FrostingContext
         NuGetPushToken = LoadParameter(context, "nuGetPushToken");
         PushNuget = context.Argument<bool>("pushNuget", false);
         
-        ProjectPaths = ProjectPaths.LoadFromContext(context, BuildConfiguration, SrcDirectoryPath, NugetVersion);
+        SourceGeneratorProjectPaths = SourceGeneratorProjectPaths.LoadFromContext(context, BuildConfiguration, SrcDirectoryPath, NugetVersion);
+        AttributesProjectPaths = AttributesProjectPaths.LoadFromContext(context, BuildConfiguration, SrcDirectoryPath, NugetVersion);
     }
 
     private string LoadParameter(ICakeContext context, string parameterName)
@@ -59,7 +61,8 @@ public sealed class OutputParametersTask : FrostingTask<BuildContext>
         context.Log.Information($"INFO: Current Working Directory: {context.Environment.WorkingDirectory}");
 
         context.Log.Information($"INFO: {nameof(context.SrcDirectoryPath)}: {context.SrcDirectoryPath}");
-        context.Log.Information($"INFO: {nameof(context.ProjectPaths)}.{nameof(context.ProjectPaths.ProjectName)}: {context.ProjectPaths.ProjectName}");
+        context.Log.Information($"INFO: {nameof(context.SourceGeneratorProjectPaths)}.{nameof(context.SourceGeneratorProjectPaths.ProjectName)}: {context.SourceGeneratorProjectPaths.ProjectName}");
+        context.Log.Information($"INFO: {nameof(context.SourceGeneratorProjectPaths)}.{nameof(context.AttributesProjectPaths.ProjectName)}: {context.AttributesProjectPaths.ProjectName}");
     }
 }
 
@@ -69,11 +72,12 @@ public sealed class BuildTask : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
     {
-        context.CleanDirectory(context.ProjectPaths.OutDir);
+        context.CleanDirectory(context.SourceGeneratorProjectPaths.OutDir);
 
-        BuildDotnetApp(context, context.ProjectPaths.PathToSln);
-        TestDotnetApp(context, context.ProjectPaths.UnitTestProj);
-        PackNugetPackage(context, context.ProjectPaths.OutDir, context.ProjectPaths.CsprojFile);
+        BuildDotnetApp(context, context.SourceGeneratorProjectPaths.PathToSln);
+        TestDotnetApp(context, context.SourceGeneratorProjectPaths.UnitTestProj);
+        PackNugetPackage(context, context.SourceGeneratorProjectPaths.OutDir, context.SourceGeneratorProjectPaths.CsprojFile);
+        PackNugetPackage(context, context.AttributesProjectPaths.OutDir, context.AttributesProjectPaths.CsprojFile);
     }
 
     private void BuildDotnetApp(BuildContext context, string pathToSln)
@@ -125,8 +129,14 @@ public sealed class NugetPushTask : FrostingTask<BuildContext>
             return;
         }
 
-        context.DotNetNuGetPush(context.ProjectPaths.NuGetFilePath, new Cake.Common.Tools.DotNet.NuGet.Push.DotNetNuGetPushSettings
+        context.DotNetNuGetPush(context.SourceGeneratorProjectPaths.NuGetFilePath, new Cake.Common.Tools.DotNet.NuGet.Push.DotNetNuGetPushSettings
         { 
+            Source = "https://api.nuget.org/v3/index.json",
+            ApiKey = context.NuGetPushToken
+        });
+
+        context.DotNetNuGetPush(context.AttributesProjectPaths.NuGetFilePath, new Cake.Common.Tools.DotNet.NuGet.Push.DotNetNuGetPushSettings
+        {
             Source = "https://api.nuget.org/v3/index.json",
             ApiKey = context.NuGetPushToken
         });

@@ -1,0 +1,64 @@
+{
+  "updatePathOptions": {
+    "rootDirectory": "../",
+    "ignorePatterns": [
+      "/code-updater/",
+      "/samples/Samples/",
+      "/.NCrunch_"
+    ]
+  },
+  "loggingOptions": {
+    "logLevel": "Verbose",
+    "outputFile": "./code-updater-output.log"
+  },
+  "cSharpOptions": {
+    "csProjVersioningOptions": {
+      "treatWarningsAsErrors": true,
+      "targetFramework": "net9.0",
+      "langVersion": "latest"
+    },
+    "csProjDotNetAnalyzerOptions": {
+      "enableNetAnalyzers": true,
+      "enforceCodeStyleInBuild": true
+    },
+    "cSharpStyleOptions": {
+      "runDotnetFormat": false
+    },
+    "nugetOptions": {
+      "auditOptions": {
+        "nuGetAudit": true,
+        "auditMode": "all",
+        "auditLevel": "low"
+      },
+      "updateOptions": {
+        "updateTopLevelNugetsInCsProj": true,
+        "updateTopLevelNugetsNotInCsProj": false
+      }
+    }
+  },
+  "npmOptions": {
+    "compileOptions": {
+      "buildCommand": "publish"
+    }
+  },
+  "regexSearchOptions": {
+    "searches": [
+      {
+        "searchRegex": "8\\..+\\.x",
+        "description": "YAML Dotnet Version"
+      },
+      {
+        "searchRegex": "sdk:8\\.[0-9]",
+        "description": "Dockerfile sdk version"
+      },
+      {
+        "searchRegex": "aspnet:8\\.[0-9]-",
+        "description": "Dockerfile ASPNET version"
+      },
+      {
+        "searchRegex": "DOTNET-ISOLATED\\|[0-9]",
+        "description": "Dotnet Isolated Azure Functions Setting"
+      }
+    ]
+  }
+}
