@@ -7,7 +7,7 @@
 		<!--Mark the nuget as a dev dependency, so any projects using this nuget don't auto pull in this project-->
 		<DevelopmentDependency>true</DevelopmentDependency>
 		<IsPackable>true</IsPackable>
-		<!--<GeneratePackageOnBuild>true</GeneratePackageOnBuild>-->
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<!--Skip Package Analysis because it'll complain we don't have any files at the "lib/netstandard2.0" path, which is okay because this is a source generator-->
 		<NoPackageAnalysis>true</NoPackageAnalysis>
 	</PropertyGroup>
@@ -55,7 +55,7 @@
 		<None Include="$(OutputPath)/$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 
 		<!--Pack the attributes dll in the lib\netstandard2.0 path so the library consuming this nuget can use it-->
-		<None Include="$(OutputPath)/ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes.dll" Pack="true" PackagePath="lib/netstandard2.0" Visible="false" />
+		<!--<None Include="$(OutputPath)/ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes.dll" Pack="true" PackagePath="lib/netstandard2.0" Visible="false" />-->
 
 		<None Include="../../README.md" Pack="true" PackagePath="/" />
 	</ItemGroup>
