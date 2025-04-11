@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A7E17D8D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{7235A503-C7CD-4028-88F4-15DBD7371471}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicInterfaceGenerator.Attributes", "PublicInterfaceGenerator.Attributes\PublicInterfaceGenerator.Attributes.csproj", "{59953E27-6190-44CE-9244-DBA1566811F5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples", "..\samples\Samples\Samples.csproj", "{2CD3B72B-1597-471F-AE24-1D7D6340A324}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{C15212B0-08B0-401D-A7BD-B340DE194195}"
@@ -29,10 +27,6 @@ Global
 		{0B2D223E-3D20-4A06-9CFE-F7CC8C450552}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B2D223E-3D20-4A06-9CFE-F7CC8C450552}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B2D223E-3D20-4A06-9CFE-F7CC8C450552}.Release|Any CPU.Build.0 = Release|Any CPU
-		{59953E27-6190-44CE-9244-DBA1566811F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59953E27-6190-44CE-9244-DBA1566811F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59953E27-6190-44CE-9244-DBA1566811F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59953E27-6190-44CE-9244-DBA1566811F5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2CD3B72B-1597-471F-AE24-1D7D6340A324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2CD3B72B-1597-471F-AE24-1D7D6340A324}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CD3B72B-1597-471F-AE24-1D7D6340A324}.Release|Any CPU.ActiveCfg = Release|Any CPU

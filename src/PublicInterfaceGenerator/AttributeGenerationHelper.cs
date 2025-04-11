@@ -18,6 +18,11 @@ public class AttributeGenerationHelper
         return builder.ToString();
     }
 
+    /// <summary>
+    /// Creates the Microsoft.CodeAnalysis.EmbeddedAttribute
+    /// This is a special attribute the compiler knows about. This allows us to have the same attribute defined in multiple assemblies in a project
+    ///     We care about that when a user has multiple projects in a solution and they are using this source generator in each one, meaning the GenerateInterfaceAttribute will be defined in each of their projects
+    /// </summary>
     public static string GenerateEmbeddedAttribute()
     {
         return

@@ -24,7 +24,6 @@ public static class TestHelper
             {
                 MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(PublicInterfaceSourceGenerator).Assembly.Location),
-                //MetadataReference.CreateFromFile(typeof(GenerateInterfaceAttribute).Assembly.Location),
             });
 
         CSharpCompilation compilation = CSharpCompilation.Create(

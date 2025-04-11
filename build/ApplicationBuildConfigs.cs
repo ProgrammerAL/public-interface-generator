@@ -36,27 +36,3 @@ public record SourceGeneratorProjectPaths(
             nugetFilePath);
     }
 };
-
-public record AttributesProjectPaths(
-    string ProjectName,
-    string ProjectFolder,
-    string CsprojFile,
-    string OutDir,
-    string NuGetFilePath)
-{
-    public static AttributesProjectPaths LoadFromContext(ICakeContext context, string buildConfiguration, string srcDirectory, string nugetVersion)
-    {
-        var projectName = "PublicInterfaceGenerator.Attributes";
-        var projectDir = srcDirectory + $"/{projectName}";
-        var csProjFile = projectDir + $"/{projectName}.csproj";
-        var outDir = projectDir + $"/bin/{buildConfiguration}/cake-build-output/attributes";
-        var nugetFilePath = outDir + $"/*{nugetVersion}.nupkg";
-
-        return new AttributesProjectPaths(
-            projectName,
-            projectDir,
-            csProjFile,
-            outDir,
-            nugetFilePath);
-    }
-};

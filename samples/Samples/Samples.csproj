@@ -8,6 +8,5 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\PublicInterfaceGenerator\PublicInterfaceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"  />
-		<!--<ProjectReference Include="..\..\src\PublicInterfaceGenerator.Attributes\PublicInterfaceGenerator.Attributes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />-->
 	</ItemGroup>
 </Project>

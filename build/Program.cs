@@ -32,8 +32,6 @@ public class BuildContext : FrostingContext
     public bool PushNuget { get; }
     public string NuGetPushToken { get; }
     public SourceGeneratorProjectPaths SourceGeneratorProjectPaths { get; }
-    public AttributesProjectPaths AttributesProjectPaths { get; }
-
     public BuildContext(ICakeContext context)
         : base(context)
     {
@@ -44,7 +42,6 @@ public class BuildContext : FrostingContext
         PushNuget = context.Argument<bool>("pushNuget", false);
         
         SourceGeneratorProjectPaths = SourceGeneratorProjectPaths.LoadFromContext(context, BuildConfiguration, SrcDirectoryPath, NugetVersion);
-        AttributesProjectPaths = AttributesProjectPaths.LoadFromContext(context, BuildConfiguration, SrcDirectoryPath, NugetVersion);
     }
 
     private string LoadParameter(ICakeContext context, string parameterName)
@@ -62,7 +59,6 @@ public sealed class OutputParametersTask : FrostingTask<BuildContext>
 
         context.Log.Information($"INFO: {nameof(context.SrcDirectoryPath)}: {context.SrcDirectoryPath}");
         context.Log.Information($"INFO: {nameof(context.SourceGeneratorProjectPaths)}.{nameof(context.SourceGeneratorProjectPaths.ProjectName)}: {context.SourceGeneratorProjectPaths.ProjectName}");
-        context.Log.Information($"INFO: {nameof(context.SourceGeneratorProjectPaths)}.{nameof(context.AttributesProjectPaths.ProjectName)}: {context.AttributesProjectPaths.ProjectName}");
     }
 }
 
@@ -77,7 +73,6 @@ public sealed class BuildTask : FrostingTask<BuildContext>
         BuildDotnetApp(context, context.SourceGeneratorProjectPaths.PathToSln);
         TestDotnetApp(context, context.SourceGeneratorProjectPaths.UnitTestProj);
         PackNugetPackage(context, context.SourceGeneratorProjectPaths.OutDir, context.SourceGeneratorProjectPaths.CsprojFile);
-        PackNugetPackage(context, context.AttributesProjectPaths.OutDir, context.AttributesProjectPaths.CsprojFile);
     }
 
     private void BuildDotnetApp(BuildContext context, string pathToSln)
@@ -99,8 +94,8 @@ public sealed class BuildTask : FrostingTask<BuildContext>
             NoBuild = true,
             ArgumentCustomization = (args) => args.Append("/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --logger trx")
         };
-
-        //context.DotNetTest(pathToUnitTestProj, testSettings);
+        
+        context.DotNetTest(pathToUnitTestProj, testSettings);
     }
 
     private void PackNugetPackage(BuildContext context, string outDir, string csprojFile)
@@ -131,12 +126,6 @@ public sealed class NugetPushTask : FrostingTask<BuildContext>
 
         context.DotNetNuGetPush(context.SourceGeneratorProjectPaths.NuGetFilePath, new Cake.Common.Tools.DotNet.NuGet.Push.DotNetNuGetPushSettings
         { 
-            Source = "https://api.nuget.org/v3/index.json",
-            ApiKey = context.NuGetPushToken
-        });
-
-        context.DotNetNuGetPush(context.AttributesProjectPaths.NuGetFilePath, new Cake.Common.Tools.DotNet.NuGet.Push.DotNetNuGetPushSettings
-        {
             Source = "https://api.nuget.org/v3/index.json",
             ApiKey = context.NuGetPushToken
         });
