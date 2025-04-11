@@ -4,8 +4,6 @@ using System.Collections.Immutable;
 
 using Microsoft.CodeAnalysis;
 
-using ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes;
-
 namespace ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.GeneratorParsers;
 
 public static class MethodParser
@@ -103,7 +101,7 @@ public static class MethodParser
             //  Don't include those here because events are handled separately
             return false;
         }
-        else if (symbol.GetAttributes().Any(x => x.AttributeClass?.Name is GenerateInterfaceAttribute.Constants.ExcludeFromGeneratedInterfaceAttributeName))
+        else if (symbol.GetAttributes().Any(x => x.AttributeClass?.Name is AttributeGenerationHelper.GenerateInterfaceAttributeConstants.ExcludeFromGeneratedInterfaceAttributeName))
         {
             //Don't include methods that have the [IgnoreInGeneratedInterface] attribute
             return false;

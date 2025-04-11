@@ -5,7 +5,6 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 
-using ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes;
 using ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.GeneratorParsers;
 
 namespace ProgrammerAl.SourceGenerators.PublicInterfaceGenerator;
@@ -15,10 +14,15 @@ public class PublicInterfaceSourceGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
+        context.RegisterPostInitializationOutput(static postInitializationContext =>
+            //postInitializationContext.AddEmbeddedAttributeDefinition();
+            postInitializationContext.AddSource("PublicInterfaceGeneratorAttributes.cs", 
+                SourceText.From(AttributeGenerationHelper.GenerateAttributesCode(), Encoding.UTF8)));
+
         var interfacesToGenerate =
             context.SyntaxProvider
             .ForAttributeWithMetadataName(
-                GenerateInterfaceAttribute.Constants.GenerateInterfaceAttributeFullName,
+                AttributeGenerationHelper.GenerateInterfaceAttributeConstants.GenerateInterfaceAttributeFullName,
                 predicate: static (node, _) => node is ClassDeclarationSyntax or RecordDeclarationSyntax,
                 transform: ClassParser.GetTypeToGenerate);
 

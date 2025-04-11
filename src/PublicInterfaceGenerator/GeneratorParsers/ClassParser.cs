@@ -5,8 +5,6 @@ using System.Text;
 
 using Microsoft.CodeAnalysis;
 
-using ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes;
-
 namespace ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.GeneratorParsers;
 
 public static class ClassParser
@@ -32,30 +30,30 @@ public static class ClassParser
         {
             var attributeClassName = attributeData.AttributeClass?.Name;
             if (string.IsNullOrWhiteSpace(attributeClassName)
-                || attributeClassName != GenerateInterfaceAttribute.Constants.GenerateInterfaceAttributeName
-                || attributeData.AttributeClass!.ToDisplayString() != GenerateInterfaceAttribute.Constants.GenerateInterfaceAttributeFullName)
+                || attributeClassName != AttributeGenerationHelper.GenerateInterfaceAttributeConstants.GenerateInterfaceAttributeName
+                || attributeData.AttributeClass!.ToDisplayString() != AttributeGenerationHelper.GenerateInterfaceAttributeConstants.GenerateInterfaceAttributeFullName)
             {
                 continue;
             }
 
             foreach (KeyValuePair<string, TypedConstant> namedArgument in attributeData.NamedArguments)
             {
-                if (namedArgument.Key == GenerateInterfaceAttribute.Constants.AttributeProperty_InterfaceName
+                if (namedArgument.Key == AttributeGenerationHelper.GenerateInterfaceAttributeConstants.AttributeProperty_InterfaceName
                     && namedArgument.Value.Value?.ToString() is { } infName)
                 {
                     interfaceName = infName;
                 }
-                else if (namedArgument.Key == GenerateInterfaceAttribute.Constants.AttributeProperty_NamespaceName
+                else if (namedArgument.Key == AttributeGenerationHelper.GenerateInterfaceAttributeConstants.AttributeProperty_NamespaceName
                     && namedArgument.Value.Value?.ToString() is { } nsName)
                 {
                     namespaceName = nsName;
                 }
-                else if (namedArgument.Key == GenerateInterfaceAttribute.Constants.AttributeProperty_Interfaces
+                else if (namedArgument.Key == AttributeGenerationHelper.GenerateInterfaceAttributeConstants.AttributeProperty_Interfaces
                     && namedArgument.Value.Value?.ToString() is { } interfaces)
                 {
                     interfacesNames = interfaces;
                 }
-                else if (namedArgument.Key == GenerateInterfaceAttribute.Constants.AttributeProperty_IsIDisposable
+                else if (namedArgument.Key == AttributeGenerationHelper.GenerateInterfaceAttributeConstants.AttributeProperty_IsIDisposable
                     && namedArgument.Value.Value?.ToString() is { } isIDisposable)
                 {
                     if (bool.TryParse(isIDisposable, out bool parsedIsIDisposable))
@@ -63,7 +61,7 @@ public static class ClassParser
                         inheritsFromIDisposable = parsedIsIDisposable;
                     }
                 }
-                else if (namedArgument.Key == GenerateInterfaceAttribute.Constants.AttributeProperty_IsIAsyncDisposable
+                else if (namedArgument.Key == AttributeGenerationHelper.GenerateInterfaceAttributeConstants.AttributeProperty_IsIAsyncDisposable
                     && namedArgument.Value.Value?.ToString() is { } isIAsyncDisposable)
                 {
                     if (bool.TryParse(isIAsyncDisposable, out bool parsedIsIAsyncDisposable))

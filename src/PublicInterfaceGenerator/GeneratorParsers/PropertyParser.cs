@@ -5,8 +5,6 @@ using System.Text;
 
 using Microsoft.CodeAnalysis;
 
-using ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes;
-
 namespace ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.GeneratorParsers;
 
 public static class PropertyParser
@@ -47,7 +45,7 @@ public static class PropertyParser
             //Only public properties
             return false;
         }
-        else if (symbol.GetAttributes().Any(x => x.AttributeClass?.Name is GenerateInterfaceAttribute.Constants.ExcludeFromGeneratedInterfaceAttributeName))
+        else if (symbol.GetAttributes().Any(x => x.AttributeClass?.Name is AttributeGenerationHelper.GenerateInterfaceAttributeConstants.ExcludeFromGeneratedInterfaceAttributeName))
         {
             //Don't include methods that have the [IgnoreInGeneratedInterface] attribute
             return false;
