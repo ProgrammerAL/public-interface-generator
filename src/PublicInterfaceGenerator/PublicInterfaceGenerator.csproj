@@ -37,21 +37,11 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" PrivateAssets="all" />
 
-		<!-- Generator dependencies -->
-		<PackageReference Include="ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes" Version="*" GeneratePathProperty="true" PrivateAssets="all" />
 	</ItemGroup>
-
-	<PropertyGroup>
-		<GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>
-	</PropertyGroup>
-
-	<Target Name="GetDependencyTargetPaths">
-		<ItemGroup>
-			<TargetPathWithTargetPlatformMoniker Include="$(PKGProgrammerAl_SourceGenerators_PublicInterfaceGenerator_Attributes)\lib\netstandard2.0\ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes.dll" IncludeRuntimeDependency="true" />
-		</ItemGroup>
-	</Target>
-
 	<ItemGroup>
+		<!-- Generator dependencies -->
+		<PackageReference Include="ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes" Version="*" />
+
 		<!-- Package the generator in the analyzer directory of the nuget package -->
 		<None Include="$(OutputPath)/$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 
