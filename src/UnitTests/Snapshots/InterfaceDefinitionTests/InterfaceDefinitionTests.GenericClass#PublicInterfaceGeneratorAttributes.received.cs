@@ -6,18 +6,18 @@ namespace Microsoft.CodeAnalysis
 
 namespace ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes
 {
-    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Event, Inherited = false, AllowMultiple = false)]
+    [System.AttributeUsage(System.AttributeTargets.Method | System.AttributeTargets.Property | System.AttributeTargets.Event, Inherited = false, AllowMultiple = false)]
     [Microsoft.CodeAnalysis.EmbeddedAttribute]
-    public class ExcludeFromGeneratedInterfaceAttribute : Attribute
+    public class ExcludeFromGeneratedInterfaceAttribute : System.Attribute
     {
     }
 }
 
 namespace ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes
 {
-    [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
+    [System.AttributeUsage(System.AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
     [Microsoft.CodeAnalysis.EmbeddedAttribute]
-    public class GenerateInterfaceAttribute : Attribute
+    public class GenerateInterfaceAttribute : System.Attribute
     {
         /// <summary>
         /// Set this to override the default interface name. Or leave it null to use the class name with an 'I' prepended to it.
