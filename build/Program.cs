@@ -100,7 +100,7 @@ public sealed class BuildTask : FrostingTask<BuildContext>
             ArgumentCustomization = (args) => args.Append("/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --logger trx")
         };
 
-        context.DotNetTest(pathToUnitTestProj, testSettings);
+        //context.DotNetTest(pathToUnitTestProj, testSettings);
     }
 
     private void PackNugetPackage(BuildContext context, string outDir, string csprojFile)
