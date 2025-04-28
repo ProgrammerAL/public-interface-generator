@@ -13,7 +13,7 @@ public class AttributeGenerationHelper
         _ = builder.AppendLine();
         _ = builder.AppendLine(GenerateExcludeFromGeneratedInterfaceAttribute());
         _ = builder.AppendLine();
-        _ = builder.AppendLine(GenerateGenerateInterfaceAttribute());
+        _ = builder.Append(GenerateGenerateInterfaceAttribute());
 
         return builder.ToString();
     }
