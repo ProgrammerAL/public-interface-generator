@@ -9,11 +9,16 @@ public class AttributeGenerationHelper
     {
         var builder = new StringBuilder();
 
+        _ = builder.AppendLine($"#nullable enable");
+        _ = builder.AppendLine(GenerateAttributionsSuppressComments());
+
         _ = builder.AppendLine(GenerateEmbeddedAttribute());
         _ = builder.AppendLine();
         _ = builder.AppendLine(GenerateExcludeFromGeneratedInterfaceAttribute());
         _ = builder.AppendLine();
-        _ = builder.Append(GenerateGenerateInterfaceAttribute());
+        _ = builder.AppendLine(GenerateGenerateInterfaceAttribute());
+        
+        _ = builder.Append(GenerateAttributionsSuppressionRestoreComments());
 
         return builder.ToString();
     }
@@ -30,6 +35,7 @@ public class AttributeGenerationHelper
             namespace Microsoft.CodeAnalysis
             {
                 [System.AttributeUsage(System.AttributeTargets.All)]
+                [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
                 internal sealed class EmbeddedAttribute : System.Attribute {}
             }
             """;
@@ -42,7 +48,7 @@ public class AttributeGenerationHelper
             namespace ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes
             {
                 [System.AttributeUsage(System.AttributeTargets.Method | System.AttributeTargets.Property | System.AttributeTargets.Event, Inherited = false, AllowMultiple = false)]
-                [Microsoft.CodeAnalysis.EmbeddedAttribute]
+                [Microsoft.CodeAnalysis.EmbeddedAttribute, System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
                 public sealed class ExcludeFromGeneratedInterfaceAttribute : System.Attribute
                 {
                 }
@@ -56,7 +62,7 @@ public class AttributeGenerationHelper
             namespace ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes
             {
                 [System.AttributeUsage(System.AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
-                [Microsoft.CodeAnalysis.EmbeddedAttribute]
+                [Microsoft.CodeAnalysis.EmbeddedAttribute, System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
                 public sealed class GenerateInterfaceAttribute : System.Attribute
                 {
                     /// <summary>
@@ -100,6 +106,28 @@ public class AttributeGenerationHelper
             }
             """;
     }
+
+    private static string GenerateAttributionsSuppressComments()
+    {
+        return """
+            #pragma warning disable SA1649 // SA1649FileNameMustMatchTypeName
+            #pragma warning disable SA1402 // FileMayOnlyContainASingleType
+            #pragma warning disable SA1502 // ElementMustNotBeOnSingleLine
+            #pragma warning disable SA1013 // ClosingBracesMustBeSpacedCorrectly
+                       
+            """;
+    }
+
+    private static string GenerateAttributionsSuppressionRestoreComments()
+    {
+        return """
+            #pragma warning restore SA1649 // SA1649FileNameMustMatchTypeName
+            #pragma warning restore SA1402 // FileMayOnlyContainASingleType
+            #pragma warning restore SA1502 // ElementMustNotBeOnSingleLine
+            #pragma warning restore SA1013 // ClosingBracesMustBeSpacedCorrectly
+            """;
+    }
+
 
     public static class GenerateInterfaceAttributeConstants
     {

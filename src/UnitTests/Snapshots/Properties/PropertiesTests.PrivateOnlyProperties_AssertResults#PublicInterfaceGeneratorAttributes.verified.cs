@@ -1,14 +1,21 @@
 ﻿//HintName: PublicInterfaceGeneratorAttributes.cs
+#nullable enable
+#pragma warning disable SA1649 // SA1649FileNameMustMatchTypeName
+#pragma warning disable SA1402 // FileMayOnlyContainASingleType
+#pragma warning disable SA1502 // ElementMustNotBeOnSingleLine
+#pragma warning disable SA1013 // ClosingBracesMustBeSpacedCorrectly
+           
 namespace Microsoft.CodeAnalysis
 {
     [System.AttributeUsage(System.AttributeTargets.All)]
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
     internal sealed class EmbeddedAttribute : System.Attribute {}
 }
 
 namespace ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes
 {
     [System.AttributeUsage(System.AttributeTargets.Method | System.AttributeTargets.Property | System.AttributeTargets.Event, Inherited = false, AllowMultiple = false)]
-    [Microsoft.CodeAnalysis.EmbeddedAttribute]
+    [Microsoft.CodeAnalysis.EmbeddedAttribute, System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
     public sealed class ExcludeFromGeneratedInterfaceAttribute : System.Attribute
     {
     }
@@ -17,7 +24,7 @@ namespace ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes
 namespace ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes
 {
     [System.AttributeUsage(System.AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
-    [Microsoft.CodeAnalysis.EmbeddedAttribute]
+    [Microsoft.CodeAnalysis.EmbeddedAttribute, System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
     public sealed class GenerateInterfaceAttribute : System.Attribute
     {
         /// <summary>
@@ -59,3 +66,7 @@ namespace ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes
         public bool IsIAsyncDisposable { get; set; }
     }
 }
+#pragma warning restore SA1649 // SA1649FileNameMustMatchTypeName
+#pragma warning restore SA1402 // FileMayOnlyContainASingleType
+#pragma warning restore SA1502 // ElementMustNotBeOnSingleLine
+#pragma warning restore SA1013 // ClosingBracesMustBeSpacedCorrectly
