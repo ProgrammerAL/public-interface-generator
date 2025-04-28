@@ -19,12 +19,12 @@ public record SourceGeneratorProjectPaths(
     public static SourceGeneratorProjectPaths LoadFromContext(ICakeContext context, string buildConfiguration, string srcDirectory, string nugetVersion)
     {
         var projectName = "PublicInterfaceGenerator";
-        var pathToSln = srcDirectory + $"/{projectName}.sln";
-        var projectDir = srcDirectory + $"/{projectName}";
-        var csProjFile = projectDir + $"/{projectName}.csproj";
-        var unitTestsProj = srcDirectory + $"/UnitTests/UnitTests.csproj";
-        var outDir = projectDir + $"/bin/{buildConfiguration}/cake-build-output/source-generator";
-        var nugetFilePath = outDir + $"/*{nugetVersion}.nupkg";
+        var pathToSln = $"{srcDirectory}/../{projectName}.sln";
+        var projectDir = $"{srcDirectory}/{projectName}";
+        var csProjFile =  $"{projectDir}/{projectName}.csproj";
+        var unitTestsProj = $"{srcDirectory}/UnitTests/UnitTests.csproj";
+        var outDir = $"{projectDir}/bin/{buildConfiguration}/cake-build-output/source-generator";
+        var nugetFilePath = $"{outDir}/*{nugetVersion}.nupkg";
 
         return new SourceGeneratorProjectPaths(
             projectName,
