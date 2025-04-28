@@ -40,7 +40,7 @@ public class AttributeGenerationHelper
             {
                 [System.AttributeUsage(System.AttributeTargets.All)]
                 [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
-                internal sealed class EmbeddedAttribute : System.Attribute {}
+                internal sealed class EmbeddedAttribute : System.Attribute { }
             }
             """;
     }
@@ -112,7 +112,7 @@ public class AttributeGenerationHelper
             #pragma warning disable SA1402 // FileMayOnlyContainASingleType
             #pragma warning disable SA1403 // SA1403FileMayOnlyContainASingleNamespace
             #pragma warning disable SA1502 // ElementMustNotBeOnSingleLine
-            #pragma warning disable SA1013 // ClosingBracesMustBeSpacedCorrectly                       
+            #pragma warning disable SA1013 // ClosingBracesMustBeSpacedCorrectly
             """;
     }
 
