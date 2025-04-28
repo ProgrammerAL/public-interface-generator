@@ -1,53 +1,50 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<!-- Source generators must target netstandard 2.0 -->
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<!-- Do not include the generator as a lib dependency -->
-		<IncludeBuildOutput>false</IncludeBuildOutput>
-		<!--Mark the nuget as a dev dependency, so any projects using this nuget don't auto pull in this project-->
-		<DevelopmentDependency>true</DevelopmentDependency>
-		<IsPackable>true</IsPackable>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<!--Skip Package Analysis because it'll complain we don't have any files at the "lib/netstandard2.0" path, which is okay because this is a source generator-->
-		<NoPackageAnalysis>true</NoPackageAnalysis>
-	</PropertyGroup>
-	<PropertyGroup>
-		<LangVersion>latest</LangVersion>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<RootNamespace>ProgrammerAl.SourceGenerators.PublicInterfaceGenerator</RootNamespace>
-		<AssemblyName>ProgrammerAl.SourceGenerators.PublicInterfaceGenerator</AssemblyName>
-		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-		<EnableNETAnalyzers>true</EnableNETAnalyzers>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-	</PropertyGroup>
-	<PropertyGroup>
-		<Version>0.1.0</Version>
-		<Title>Public Interface Generator</Title>
-		<Authors>ProgrammerAL</Authors>
-		<Description>A source generator to create C# interfaces based off the public methods/properties/events of a class.</Description>
-		<PackageProjectUrl>https://github.com/ProgrammerAL/public-interface-generator</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/ProgrammerAL/public-interface-generator</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<PackageTags>source generator</PackageTags>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" PrivateAssets="all" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<!-- Package the generator in the analyzer directory of the nuget package -->
-		<None Include="$(OutputPath)/$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-
-		<None Include="../../README.md" Pack="true" PackagePath="/" />
-	</ItemGroup>
-
-	<PropertyGroup>
-		<NuGetAudit>true</NuGetAudit>
-		<NuGetAuditMode>all</NuGetAuditMode>
-		<NuGetAuditLevel>low</NuGetAuditLevel>
-	</PropertyGroup>
+  <PropertyGroup>
+    <!-- Source generators must target netstandard 2.0 -->
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <!-- Do not include the generator as a lib dependency -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <!--Mark the nuget as a dev dependency, so any projects using this nuget don't auto pull in this project-->
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <!--Skip Package Analysis because it'll complain we don't have any files at the "lib/netstandard2.0" path, which is okay because this is a source generator-->
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>ProgrammerAl.SourceGenerators.PublicInterfaceGenerator</RootNamespace>
+    <AssemblyName>ProgrammerAl.SourceGenerators.PublicInterfaceGenerator</AssemblyName>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Version>0.1.0</Version>
+    <Title>Public Interface Generator</Title>
+    <Authors>ProgrammerAL</Authors>
+    <Description>A source generator to create C# interfaces based off the public methods/properties/events of a class.</Description>
+    <PackageProjectUrl>https://github.com/ProgrammerAL/public-interface-generator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ProgrammerAL/public-interface-generator</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>source generator</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Package the generator in the analyzer directory of the nuget package -->
+    <None Include="$(OutputPath)/$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+  <PropertyGroup>
+    <NuGetAudit>true</NuGetAudit>
+    <NuGetAuditMode>all</NuGetAuditMode>
+    <NuGetAuditLevel>low</NuGetAuditLevel>
+  </PropertyGroup>
 </Project>

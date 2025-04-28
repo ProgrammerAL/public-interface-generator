@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicInterfaceGenerator", "PublicInterfaceGenerator\PublicInterfaceGenerator.csproj", "{0B2D223E-3D20-4A06-9CFE-F7CC8C450552}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicInterfaceGenerator", "src/PublicInterfaceGenerator\PublicInterfaceGenerator.csproj", "{0B2D223E-3D20-4A06-9CFE-F7CC8C450552}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A7E17D8D-F489-4CD6-85DA-03BEE1BDD217}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{7235A503-C7CD-4028-88F4-15DBD7371471}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples", "..\samples\Samples\Samples.csproj", "{2CD3B72B-1597-471F-AE24-1D7D6340A324}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples", "samples\Samples\Samples.csproj", "{2CD3B72B-1597-471F-AE24-1D7D6340A324}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{C15212B0-08B0-401D-A7BD-B340DE194195}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "src/UnitTests\UnitTests.csproj", "{C15212B0-08B0-401D-A7BD-B340DE194195}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "..\build\Build.csproj", "{4F1A5CD8-F08F-6B1C-4564-8476E15A785B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "build\Build.csproj", "{4F1A5CD8-F08F-6B1C-4564-8476E15A785B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CICD", "CICD", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject

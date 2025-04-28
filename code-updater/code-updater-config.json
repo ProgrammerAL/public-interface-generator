@@ -14,7 +14,7 @@
   "cSharpOptions": {
     "csProjVersioningOptions": {
       "treatWarningsAsErrors": true,
-      "targetFramework": "net9.0",
+      "targetFramework": "net8.0",
       "langVersion": "latest"
     },
     "csProjDotNetAnalyzerOptions": {
