@@ -6,13 +6,6 @@
 #pragma warning disable SA1502 // ElementMustNotBeOnSingleLine
 #pragma warning disable SA1013 // ClosingBracesMustBeSpacedCorrectly
 
-namespace Microsoft.CodeAnalysis
-{
-    [System.AttributeUsage(System.AttributeTargets.All)]
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
-    internal sealed class EmbeddedAttribute : System.Attribute { }
-}
-
 namespace ProgrammerAl.SourceGenerators.PublicInterfaceGenerator.Attributes
 {
     [System.AttributeUsage(System.AttributeTargets.Method | System.AttributeTargets.Property | System.AttributeTargets.Event, Inherited = false, AllowMultiple = false)]
