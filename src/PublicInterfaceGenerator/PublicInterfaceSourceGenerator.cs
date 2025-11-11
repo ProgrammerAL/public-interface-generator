@@ -15,9 +15,11 @@ public class PublicInterfaceSourceGenerator : IIncrementalGenerator
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         context.RegisterPostInitializationOutput(static postInitializationContext =>
-            //postInitializationContext.AddEmbeddedAttributeDefinition();
-            postInitializationContext.AddSource("PublicInterfaceGeneratorAttributes.cs", 
-                SourceText.From(AttributeGenerationHelper.GenerateAttributesCode(), Encoding.UTF8)));
+        {
+            postInitializationContext.AddEmbeddedAttributeDefinition();
+            postInitializationContext.AddSource("PublicInterfaceGeneratorAttributes.cs",
+                SourceText.From(AttributeGenerationHelper.GenerateAttributesCode(), Encoding.UTF8));
+        });
 
         var interfacesToGenerate =
             context.SyntaxProvider

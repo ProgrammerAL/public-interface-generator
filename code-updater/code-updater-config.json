@@ -14,7 +14,7 @@
   "cSharpOptions": {
     "csProjVersioningOptions": {
       "treatWarningsAsErrors": true,
-      "targetFramework": "net9.0",
+      "targetFramework": "net10.0",
       "langVersion": "latest"
     },
     "csProjDotNetAnalyzerOptions": {
@@ -44,15 +44,15 @@
   "regexSearchOptions": {
     "searches": [
       {
-        "searchRegex": "8\\..+\\.x",
+        "searchRegex": "9\\..+\\.x",
         "description": "YAML Dotnet Version"
       },
       {
-        "searchRegex": "sdk:8\\.[0-9]",
+        "searchRegex": "sdk:9\\.[0-9]",
         "description": "Dockerfile sdk version"
       },
       {
-        "searchRegex": "aspnet:8\\.[0-9]-",
+        "searchRegex": "aspnet:9\\.[0-9]-",
         "description": "Dockerfile ASPNET version"
       },
       {
