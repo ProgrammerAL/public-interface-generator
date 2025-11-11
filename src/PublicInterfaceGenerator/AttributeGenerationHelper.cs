@@ -92,17 +92,21 @@ public class AttributeGenerationHelper
             #pragma warning disable SA1403 // SA1403FileMayOnlyContainASingleNamespace
             #pragma warning disable SA1502 // ElementMustNotBeOnSingleLine
             #pragma warning disable SA1013 // ClosingBracesMustBeSpacedCorrectly
+            #pragma warning disable IDE0160 // Use block-scoped namespace 
+            #pragma warning disable IDE0161 // Use file-scoped namespace
             """;
     }
 
     private static string GenerateAttributionsSuppressionRestoreComments()
     {
         return """
-            #pragma warning restore SA1649 // SA1649FileNameMustMatchTypeName
-            #pragma warning restore SA1402 // FileMayOnlyContainASingleType
-            #pragma warning restore SA1403 // SA1403FileMayOnlyContainASingleNamespace
-            #pragma warning restore SA1502 // ElementMustNotBeOnSingleLine
-            #pragma warning restore SA1013 // ClosingBracesMustBeSpacedCorrectly
+            #pragma warning restore SA1649  // SA1649FileNameMustMatchTypeName
+            #pragma warning restore SA1402  // FileMayOnlyContainASingleType
+            #pragma warning restore SA1403  // SA1403FileMayOnlyContainASingleNamespace
+            #pragma warning restore SA1502  // ElementMustNotBeOnSingleLine
+            #pragma warning restore SA1013  // ClosingBracesMustBeSpacedCorrectly
+            #pragma warning restore IDE0160 // Use block-scoped namespace 
+            #pragma warning restore IDE0161 // Use file-scoped namespace
             """;
     }
 
